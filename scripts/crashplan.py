@@ -54,11 +54,15 @@ if os.path.exists(crashplan_log):
                         destinations[destination]['duration'] = 0
                     destinations[destination]['last_success'] = timestamp
                 elif re.match(r'^Stopped backup', message):
-                    destinations[destination]['last_failure'] = timestamp
                     reason = re.match(r'.*Reason for stopping backup: (.*)', next(cplog))
                     if reason:
-                        destinations[destination]['reason'] = reason.group(1)
+                        if reason.group(1) == "Nothing to do":
+                            destinations[destination]['last_success'] = timestamp
+                        elif reason.group(1):
+                            destinations[destination]['last_failure'] = timestamp
+                            destinations[destination]['reason'] = reason.group(1)
                     else:
+                        destinations[destination]['last_failure'] = timestamp
                         destinations[destination]['reason'] = 'unknown'
 else:
     print "CrashPlan log not found here: %s " % crashplan_log
