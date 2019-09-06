@@ -23,7 +23,7 @@ if len(sys.argv) > 1:
         print 'Manual check: skipping'
         exit(0)
 
-crashplan_log="/Library/Logs/CrashPlan/history.log.0"
+crashplan_log="/Library/Logs/CrashPlan/history.log"
 cacheFile = 'crashplan.txt'
 
 # crashplan logformat
