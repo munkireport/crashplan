@@ -24,7 +24,23 @@ if len(sys.argv) > 1:
         exit(0)
 
 crashplan_log="/Library/Logs/CrashPlan/history.log"
+crashplan_log_0="/Library/Logs/CrashPlan/history.log.0"
 cacheFile = 'crashplan.txt'
+
+# convoluted code because Code42 can't decide what log name formatting to use
+if os.path.exists(crashplan_log):
+    if os.path.exists(crashplan_log_0):
+        if os.path.getctime(crashplan_log) > os.path.getctime(crashplan_log_0):
+            pass
+        else:
+            crashplan_log = crashplan_log_0
+    else:
+        pass
+else:
+    if os.path.exists(crashplan_log_0):
+        crashplan_log = crashplan_log_0
+    else:
+        print "CrashPlan log not found here: %s or %s" % (crashplan_log, crashplan_log_0)
 
 # crashplan logformat
 regex = re.compile(r'. (\d+\/\d+\/\d+ \d+:\d+[AP]M)\s+(\[[^\]]+\])\s+(.*)')
