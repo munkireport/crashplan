@@ -39,8 +39,6 @@ if os.path.exists(crashplan_log):
 else:
     if os.path.exists(crashplan_log_0):
         crashplan_log = crashplan_log_0
-    else:
-        print "CrashPlan log not found here: %s or %s" % (crashplan_log, crashplan_log_0)
 
 # crashplan logformat
 regex = re.compile(r'. (\d+\/\d+\/\d+ \d+:\d+[AP]M)\s+(\[[^\]]+\])\s+(.*)')
@@ -81,7 +79,7 @@ if os.path.exists(crashplan_log):
                         destinations[destination]['last_failure'] = timestamp
                         destinations[destination]['reason'] = 'unknown'
 else:
-    print "CrashPlan log not found here: %s " % crashplan_log
+    print "CrashPlan log not found at: %s or %s" % (crashplan_log, crashplan_log_0)
     
 # Make sure cachedir exists
 cachedir = '%s/cache' % os.path.dirname(os.path.realpath(__file__))
