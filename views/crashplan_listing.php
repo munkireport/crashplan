@@ -4,13 +4,13 @@
 	)
 )); ?>
 
-<div class="container">
+<div class="container-fluid">
 
-  <div class="row">
+  <div class="row pt-4">
 
   	<div class="col-lg-12">
 
-		  <h3><span data-i18n="crashplan.listing_title"></span> <span id="total-count" class='label label-primary'>…</span></h3>
+		  <h3><span data-i18n="crashplan.listing_title"></span> <span id="total-count" class='badge badge-primary'>…</span></h3>
 
 		  <table class="table table-striped table-condensed table-bordered">
 		    <thead>
