@@ -1,0 +1,14 @@
+type: button
+widget_id: crashplan_keep_deleted-widget
+api_url: /module/crashplan/get_widget_data/backup_keep_deleted
+i18n_title: crashplan.backup_keep_deleted
+icon: fa-trash
+listing_link: /show/listing/crashplan/crashplan
+i18n_empty_result: crashplan.blank
+buttons:
+  - label: 0
+    i18n_label: no
+    class: btn-danger 
+  - label: 1
+    i18n_label: yes
+    class: btn-success

@@ -1,0 +1,20 @@
+type: button
+widget_id: crashplan_guid_changed-widget
+api_url: /module/crashplan/get_stats/cp_guid_change_time
+i18n_title: crashplan.cp_guid_change_time
+icon: fa-chain-broken
+listing_link: /show/listing/crashplan/crashplan
+i18n_empty_result: crashplan.blank
+buttons:
+  - label: week_plus
+    i18n_label: crashplan.lastmonth
+    class: btn-danger
+  - label: lastweek
+    i18n_label: crashplan.lastweek
+    class: btn-warning
+  - label: today
+    i18n_label: crashplan.today
+    class: btn-success
+  - label: lasthour
+    i18n_label: crashplan.lasthour
+    class: btn-info

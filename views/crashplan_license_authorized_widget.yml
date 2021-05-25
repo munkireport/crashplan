@@ -1,0 +1,14 @@
+type: button
+widget_id: crashplan_license_authorized-widget
+api_url: /module/crashplan/get_widget_data/license_authorized
+i18n_title: crashplan.license_authorized
+icon: fa-id-card
+listing_link: /show/listing/crashplan/crashplan
+i18n_empty_result: crashplan.blank
+buttons:
+  - label: 0
+    i18n_label: no
+    class: btn-danger 
+  - label: 1
+    i18n_label: yes
+    class: btn-success

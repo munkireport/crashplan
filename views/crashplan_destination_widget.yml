@@ -1,0 +1,8 @@
+type: scrollbox
+widget_id: crashplan-destination-widget
+api_url: /module/crashplan/get_widget_data/destination
+i18n_title: crashplan.destination
+icon: fa-database fa-rotate-90
+listing_link: /show/listing/crashplan/crashplan
+search_key: label
+badge: count

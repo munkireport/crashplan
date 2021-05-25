@@ -1,0 +1,18 @@
+row1:
+    crashplan:
+    crashplan_backup_enabled:
+    crashplan_last_connected:
+row2:
+    crashplan_license_authorized:
+    crashplan_auth_date:
+    crashplan_guid_changed:
+row3:
+    crashplan_keep_deleted:
+    crashplan_compression:
+    crashplan_encryption:
+row4:
+    crashplan_backup_paths_last_modified:
+    crashplan_destination:
+    crashplan_version:
+row5:
+    crashplan_last_failure_reason:

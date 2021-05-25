@@ -1,0 +1,8 @@
+type: scrollbox
+widget_id: crashplan-last-failur-reason-widget
+api_url: /module/crashplan/get_widget_data/reason
+i18n_title: crashplan.reason
+icon: fa-exclamation-triangle
+listing_link: /show/listing/crashplan/crashplan
+search_key: label
+badge: count

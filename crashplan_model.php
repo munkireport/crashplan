@@ -1,97 +1,63 @@
 <?php
-class Crashplan_model extends \Model
-{
-    
-    public function __construct($serial = '')
-    {
-        parent::__construct('id', 'crashplan'); //primary key, tablename
-        $this->rs['id'] = '';
-        $this->rs['serial_number'] = $serial; //$this->rt['serial_number'] = 'VARCHAR(255) UNIQUE';
-        $this->rs['destination'] = ''; // Name of destination
-        $this->rs['last_success'] = 0; // Timestamp of last successful backup
-        $this->rs['duration'] = 0; // duration in seconds
-        $this->rs['last_failure'] = 0; // Timestamp of last failed backup
-        $this->rs['reason'] = ''; // Reason of last failure
-    }
 
-    // ------------------------------------------------------------------------
-    /**
-     * Process data sent by postflight
-     *
-     * @param string data
-     *
-     **/
-    public function process($data)
-    {
-        // Delete previous entries
-        $serial_number = $this->serial_number;
-        $this->deleteWhere('serial_number=?', $serial_number);
-        
-        //
-        $messages = array(
-            'errors' => array(),
-            'warnings' => array()
-        );
-        
-        // Parse data
-        $lines = explode("\n", $data);
-        $headers =  str_getcsv(array_shift($lines));
-        foreach ($lines as $line) {
-            if ($line) {
-                $this->merge(array_combine($headers, str_getcsv($line)));
-                
-                // Only store entry when there is at least one date
-                if ($this->last_success > 0 or $this->last_failure > 0) {
-                    $this->id = '';
-                    $this->serial_number = $serial_number;
-                    $this->save();
-                    
-                    // Events
-                    if ($this->last_success < $this->last_failure) {
-                        $messages['errors'][] = array(
-                            'destination' => $this->destination,
-                            'reason' => $this->reason,
-                        );
-                    }
-                }
-            }
-        }
-        
-        // Only store if there is data
-        if ($messages['errors']) {
-            $type = 'danger';
-            $msg = 'crashplan.backup_failed';
-            if (count($messages['errors']) == 1) {
-                $out = array_pop($messages['errors']);
-            } else {
-                $out = array('count' => count($messages['errors']));
-            }
-            $data = json_encode($out);
-            $this->store_event($type, $msg, $data);
-        } else {
-            $this->delete_event();
-        }
-    } // end process()
-    
-    /**
-     * Get statistics
-     *
-     * @return void
-     * @author
-     **/
-    public function get_stats($hours)
-    {
-        $now = time();
-        $today = $now - 3600 * 24;
-        $week_ago = $now - 3600 * 24 * 7;
-        $month_ago = $now - 3600 * 24 * 30;
-        $sql = "SELECT COUNT(1) as total, 
-			COUNT(CASE WHEN last_success > '$today' THEN 1 END) AS today, 
-			COUNT(CASE WHEN last_success BETWEEN '$week_ago' AND '$today' THEN 1 END) AS lastweek,
-			COUNT(CASE WHEN last_success < '$week_ago' THEN 1 END) AS week_plus
-			FROM crashplan
-			LEFT JOIN reportdata USING (serial_number)
-			".get_machine_group_filter();
-        return current($this->query($sql));
-    }
+use munkireport\models\MRModel as Eloquent;
+
+class Crashplan_model extends Eloquent
+{
+    protected $table = 'crashplan';
+
+    protected $fillable = [
+        'serial_number',
+        'destination',
+        'last_success',
+        'duration',
+        'last_failure',
+        'reason',
+        'app_log_time',
+        'app_log_locale',
+        'app_log_size',
+        'cp_version',
+        'org_type',
+        'license_authorized',
+        'auth_rules',
+        'license_model',
+        'license_features',
+        'last_connected',
+        'backup_enabled',
+        'backup_paths',
+        'backup_paths_last_modified',
+        'backup_scanning',
+        'backup_check_for_deletes',
+        'backup_total_files',
+        'backup_total_size',
+        'backup_frequency',
+        'backup_open_files',
+        'backup_scan_interval',
+        'backup_scan_time',
+        'backup_compression',
+        'backup_encryption',
+        'backup_data_deduplication',
+        'backup_keep_deleted',
+        'backup_keep_deleted_minutes',
+        'backup_version_last_week',
+        'backup_version_ninety_days',
+        'backup_version_year',
+        'backup_version_previous_year',
+        'backup_start_time',
+        'backup_start_files',
+        'backup_complete_time',
+        'backup_end_files',
+        'backup_sent',
+        'backup_sent_speed',
+        'cp_guid_change_time',
+        'cp_guid_old',
+        'cp_guid_new',
+        'history_log_size',
+        'auth_date',
+        'org_name',
+        'guid',
+        'cp_username',
+    ];
+
+    public $timestamps = false;
 }

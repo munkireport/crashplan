@@ -1,0 +1,30 @@
+i18n_title: crashplan.report_title
+not_null_column: destination
+js_link: module/crashplan/js/crashplan
+table:
+    -
+        column: machine.computer_name
+        i18n_header: listing.computername
+        formatter: clientDetail
+        tab_link: crashplan
+    -
+        column: reportdata.serial_number
+        i18n_header: serial
+    - {i18n_header: crashplan.cp_username, column: crashplan.cp_username}
+    - {i18n_header: crashplan.cp_version, column: crashplan.cp_version}
+    - {i18n_header: crashplan.destination, column: crashplan.destination}
+    - {i18n_header: crashplan.backup_enabled, column: crashplan.backup_enabled, formatter: binaryYesNo}
+    - {i18n_header: crashplan.last_success, column: crashplan.last_success, formatter: crashplanTimestampToMoment}
+    - {i18n_header: crashplan.duration, column: crashplan.duration, formatter: crashplanTimestampToMoment}
+    - {i18n_header: crashplan.last_failure, column: crashplan.last_failure, formatter: crashplanTimestampToMoment}
+    - {i18n_header: crashplan.reason, column: crashplan.reason}
+    - {i18n_header: crashplan.backup_sent, column: crashplan.backup_sent}
+    - {i18n_header: crashplan.backup_sent_speed, column: crashplan.backup_sent_speed}
+    - {i18n_header: crashplan.backup_total_size, column: crashplan.backup_total_size}
+    - {i18n_header: crashplan.backup_total_files, column: crashplan.backup_total_files}
+    - {i18n_header: crashplan.guid, column: crashplan.guid}
+    - {i18n_header: crashplan.org_name, column: crashplan.org_name}
+    - {i18n_header: crashplan.auth_date, column: crashplan.auth_date, formatter: crashplanTimestampToMoment}
+    - {i18n_header: crashplan.license_authorized, column: crashplan.license_authorized, formatter: binaryYesNo}
+    - {i18n_header: crashplan.backup_paths_last_modified, column: crashplan.backup_paths_last_modified, formatter: crashplanTimestampToMoment}
+    - {i18n_header: crashplan.backup_paths, column: crashplan.backup_paths}

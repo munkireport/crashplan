@@ -1,0 +1,42 @@
+client_tabs:
+    crashplan:
+        view: crashplan_tab
+        i18n: crashplan.title
+detail_widgets:
+    crashplan_detail:
+        view: crashplan_detail_widget
+listings:
+    crashplan:
+        view: crashplan_listing
+        i18n: crashplan.title
+widgets:
+    crashplan_license_authorized:
+        view: crashplan_license_authorized_widget
+    crashplan_compression:
+        view: crashplan_compression_widget
+    crashplan_encryption:
+        view: crashplan_encryption_widget
+    crashplan_keep_deleted:
+        view: crashplan_keep_deleted_widget
+    crashplan_backup_enabled:
+        view: crashplan_backup_enabled_widget
+    crashplan_last_connected:
+        view: crashplan_last_connected_widget
+    crashplan_backup_paths_last_modified:
+        view: crashplan_backup_paths_last_modified_widget
+    crashplan_guid_changed:
+        view: crashplan_guid_changed_widget
+    crashplan_auth_date:
+        view: crashplan_auth_date_widget
+    crashplan_destination:
+        view: crashplan_destination_widget
+    crashplan_version:
+        view: crashplan_version_widget
+    crashplan_last_failure_reason:
+        view: crashplan_last_failure_reason_widget
+    crashplan:
+        view: crashplan_widget
+reports:
+    crashplan:
+        view: crashplan_report
+        i18n: crashplan.report_title

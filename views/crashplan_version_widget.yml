@@ -1,0 +1,8 @@
+type: scrollbox
+widget_id: crashplan-version-widget
+api_url: /module/crashplan/get_widget_data/cp_version
+i18n_title: crashplan.cp_version
+icon: fa-code-fork
+listing_link: /show/listing/crashplan/crashplan
+search_key: label
+badge: count

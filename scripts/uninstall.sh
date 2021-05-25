@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Remove crashplan.py script
 rm -f "${MUNKIPATH}preflight.d/crashplan.py"
-rm -f "${CACHEPATH}crashplan.txt"
 
+# Remove crashplan.plist file
+rm -f "${MUNKIPATH}preflight.d/cache/crashplan.plist"

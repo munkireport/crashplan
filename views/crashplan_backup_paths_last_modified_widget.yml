@@ -1,0 +1,20 @@
+type: button
+widget_id: crashplan_backup_paths_last_modified-widget
+api_url: /module/crashplan/get_stats/backup_paths_last_modified
+i18n_title: crashplan.backup_paths_last_modified
+icon: fa-road
+listing_link: /show/listing/crashplan/crashplan
+i18n_empty_result: crashplan.blank
+buttons:
+  - label: week_plus
+    i18n_label: crashplan.lastmonth
+    class: btn-danger
+  - label: lastweek
+    i18n_label: crashplan.lastweek
+    class: btn-warning
+  - label: today
+    i18n_label: crashplan.today
+    class: btn-success
+  - label: lasthour
+    i18n_label: crashplan.lasthour
+    class: btn-info

@@ -1,0 +1,13 @@
+type: table
+i18n_title: crashplan.title
+table_id: crashplan_detail
+icon: plane fa-rotate-90
+table:
+    - i18n_header: crashplan.destination
+      class: crashplan-destination
+    - i18n_header: crashplan.last_success
+      class: crashplan-last_success
+    - i18n_header: crashplan.last_failure
+      class: crashplan-last_failure
+    - i18n_header: crashplan.reason
+      class: crashplan-reason

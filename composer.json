@@ -1,6 +1,1 @@
-{
-    "name": "munkireport/crashplan",
-    "description": "Module for munkireport.",
-    "license": "MIT",
-    "version": "6.0.0-beta1"
-}
+{"license":"MIT","name":"munkireport/crashplan","description":"Code42 CrashPlan module for munkireport.","version":"6.0.0-beta1"}

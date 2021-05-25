@@ -1,0 +1,14 @@
+type: button
+widget_id: crashplan_encryption-widget
+api_url: /module/crashplan/get_widget_data/backup_encryption
+i18n_title: crashplan.backup_encryption
+icon: fa-lock
+listing_link: /show/listing/crashplan/crashplan
+i18n_empty_result: crashplan.blank
+buttons:
+  - label: 0
+    i18n_label: no
+    class: btn-danger 
+  - label: 1
+    i18n_label: yes
+    class: btn-success
