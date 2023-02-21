@@ -1,4 +1,5 @@
-#!/usr/local/munkireport/munkireport-python2
+#!/usr/local/munkireport/munkireport-python3
+
 """
 extracts information about the external displays from system profiler
 """
@@ -16,12 +17,6 @@ def cp_date_to_unixtimestamp(cp_date):
     #diff = dt - ep
     #return int(diff.total_seconds())
     return int(datetime.strftime(dt, "%s"))
-
-# Skip manual check
-if len(sys.argv) > 1:
-    if sys.argv[1] == 'manualcheck':
-        print 'Manual check: skipping'
-        exit(0)
 
 crashplan_log="/Library/Logs/CrashPlan/history.log"
 crashplan_log_0="/Library/Logs/CrashPlan/history.log.0"
@@ -79,16 +74,12 @@ if os.path.exists(crashplan_log):
                         destinations[destination]['last_failure'] = timestamp
                         destinations[destination]['reason'] = 'unknown'
 else:
-    print "CrashPlan log not found at: %s or %s" % (crashplan_log, crashplan_log_0)
-    
-# Make sure cachedir exists
-cachedir = '%s/cache' % os.path.dirname(os.path.realpath(__file__))
-if not os.path.exists(cachedir):
-    os.makedirs(cachedir)
+    print("CrashPlan log not found at: %s or %s" % (crashplan_log, crashplan_log_0))
 
 # Write to file
+cachedir = '%s/cache' % os.path.dirname(os.path.realpath(__file__))
 listWriter = csv.DictWriter(
-   open(os.path.join(cachedir, cacheFile), 'wb'),
+   open(os.path.join(cachedir, cacheFile), 'w'),
    fieldnames=['destination', 'start', 'last_success', 'duration', 'last_failure', 'reason'],
    delimiter=',',
    quotechar='"',
@@ -96,5 +87,5 @@ listWriter = csv.DictWriter(
 )
 
 listWriter.writeheader()
-for name, values in destinations.iteritems():
+for name, values in destinations.items():
     listWriter.writerow(values)
