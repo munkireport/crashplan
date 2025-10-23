@@ -34,7 +34,7 @@ class Crashplan_controller extends Module_controller
         $obj = new View();
         $obj->view('crashplan_listing', $data, $this->view_path);
     }
-    
+
     /**
      * Get  stats
      *

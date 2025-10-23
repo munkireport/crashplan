@@ -18,9 +18,18 @@ def cp_date_to_unixtimestamp(cp_date):
     #return int(diff.total_seconds())
     return int(datetime.strftime(dt, "%s"))
 
-crashplan_log="/Library/Logs/CrashPlan/history.log"
-crashplan_log_0="/Library/Logs/CrashPlan/history.log.0"
+# https://support.crashplan.com/hc/en-us/articles/8959806429325-Read-CrashPlan-app-log-files
+crashplan_log="/Library/Logs/CrashPlan/history.log" # CrashPlan 11.5.0 and below
+crashplan_log_0="/Library/Logs/CrashPlan/history.log.0" # CrashPlan 11.5.0 and below
+
+crashplan_log_new="/Library/Application Support/CrashPlan/log/history.log" # CrashPlan 11.6.0 and higher
+crashplan_log_0_new="/Library/Application Support/CrashPlan/log/history.log.0" # CrashPlan 11.6.0 and higher
 cacheFile = 'crashplan.txt'
+
+# Check if we have new version log files
+if os.path.exists(crashplan_log_new) or os.path.exists(crashplan_log_0_new):
+    crashplan_log="/Library/Application Support/CrashPlan/log/history.log"
+    crashplan_log_0=="/Library/Application Support/CrashPlan/log/history.log.0"
 
 # convoluted code because Code42 can't decide what log name formatting to use
 if os.path.exists(crashplan_log):
@@ -74,7 +83,7 @@ if os.path.exists(crashplan_log):
                         destinations[destination]['last_failure'] = timestamp
                         destinations[destination]['reason'] = 'unknown'
 else:
-    print("CrashPlan log not found at: %s or %s" % (crashplan_log, crashplan_log_0))
+    print("CrashPlan log not found at: %s, %s, %s, or %s" % (crashplan_log, crashplan_log_0, crashplan_log_new, crashplan_log_0_new))
 
 # Write to file
 cachedir = '%s/cache' % os.path.dirname(os.path.realpath(__file__))

@@ -26,26 +26,26 @@ class Crashplan_model extends \Model
         // Delete previous entries
         $serial_number = $this->serial_number;
         $this->deleteWhere('serial_number=?', $serial_number);
-        
+
         //
         $messages = array(
             'errors' => array(),
             'warnings' => array()
         );
-        
+
         // Parse data
         $lines = explode("\n", $data);
         $headers =  str_getcsv(array_shift($lines));
         foreach ($lines as $line) {
             if ($line) {
                 $this->merge(array_combine($headers, str_getcsv($line)));
-                
+
                 // Only store entry when there is at least one date
                 if ($this->last_success > 0 or $this->last_failure > 0) {
                     $this->id = '';
                     $this->serial_number = $serial_number;
                     $this->save();
-                    
+
                     // Events
                     if ($this->last_success < $this->last_failure) {
                         $messages['errors'][] = array(
@@ -56,7 +56,7 @@ class Crashplan_model extends \Model
                 }
             }
         }
-        
+
         // Only store if there is data
         if ($messages['errors']) {
             $type = 'danger';
@@ -72,7 +72,7 @@ class Crashplan_model extends \Model
             $this->delete_event();
         }
     } // end process()
-    
+
     /**
      * Get statistics
      *
@@ -86,12 +86,12 @@ class Crashplan_model extends \Model
         $week_ago = $now - 3600 * 24 * 7;
         $month_ago = $now - 3600 * 24 * 30;
         $sql = "SELECT COUNT(1) as total, 
-			COUNT(CASE WHEN last_success > '$today' THEN 1 END) AS today, 
-			COUNT(CASE WHEN last_success BETWEEN '$week_ago' AND '$today' THEN 1 END) AS lastweek,
-			COUNT(CASE WHEN last_success < '$week_ago' THEN 1 END) AS week_plus
-			FROM crashplan
-			LEFT JOIN reportdata USING (serial_number)
-			".get_machine_group_filter();
+            COUNT(CASE WHEN last_success > '$today' THEN 1 END) AS today, 
+            COUNT(CASE WHEN last_success BETWEEN '$week_ago' AND '$today' THEN 1 END) AS lastweek,
+            COUNT(CASE WHEN last_success < '$week_ago' THEN 1 END) AS week_plus
+            FROM crashplan
+            LEFT JOIN reportdata USING (serial_number)
+            ".get_machine_group_filter();
         return current($this->query($sql));
     }
 }
