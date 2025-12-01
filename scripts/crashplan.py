@@ -29,7 +29,7 @@ cacheFile = 'crashplan.txt'
 # Check if we have new version log files
 if os.path.exists(crashplan_log_new) or os.path.exists(crashplan_log_0_new):
     crashplan_log="/Library/Application Support/CrashPlan/log/history.log"
-    crashplan_log_0=="/Library/Application Support/CrashPlan/log/history.log.0"
+    crashplan_log_0="/Library/Application Support/CrashPlan/log/history.log.0"
 
 # convoluted code because Code42 can't decide what log name formatting to use
 if os.path.exists(crashplan_log):
